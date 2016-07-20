@@ -7,29 +7,51 @@
         <script src="bower_components/d3kit-timeline/dist/d3kit-timeline.min.js"></script>
     </head>
     <body>
-        index 
-        <div class="timeline" id="timeline"></div>
+        index
+        <div> 
+        <span class="timeline" id="timeline"></span>
+        <span class="timeline" id="timeline2"></span>
+    </div>
         <script>
             var data = [
-              {time: new Date(1977, 4,25), episode: 4, name: 'A New Hope'},
-              {time: new Date(1980, 4,17), episode: 5, name: 'The Empire Strikes Back'},
-              {time: new Date(1984, 4,25), episode: 6, name: 'Return of the Jedi'},
-              {time: new Date(1999, 4,19), episode: 1, name: 'The Phantom Menace'},
-              {time: new Date(2002, 4,16), episode: 2, name: 'Attack of the Clones'},
-              {time: new Date(2005, 4,19), episode: 3, name: 'Revenge of the Sith'},
-              {time: new Date(2015,11,18), episode: 7, name: 'The Force Awakens'},
+              {time: new Date(2015,11, 1), episode: 4, name: '14:55'},
+              {time: new Date(2016, 2, 8), episode: 2, name: '100 days'},
+              ];
+              
+            var data2 = [
+              {time: new Date(1981,10,21), episode: 4, name: 'Birth'},
+              {time: new Date(2000, 2, 1), episode: 5, name: 'Incheon Foreign Language High School'},
+              {time: new Date(2003, 9, 2), episode: 6, name: 'soldier'},
+              {time: new Date(2010, 2, 1), episode: 1, name: 'KNOU - CS'},
+              {time: new Date(2013, 2,18), episode: 2, name: 'Soongsil Univ.'},
+              {time: new Date(2013, 3, 1), episode: 2, name: 'wedding'},
+              {time: new Date(2015,11, 1), episode: 2, name: 'my son'},
               ];
 
               var chart = new d3KitTimeline('#timeline', {
                 direction: 'right',
                 initialWidth: 400,
-                initialHeight: 250,
+                initialHeight: 450,
+                layerGap: 60,
                 textFn: function(d){
+                  return d.time.getFullYear() + '.' + d.time.getMonth() + ' - ' + d.name;
+                  //return d.time.getFullYear() + ' - ' + d.name;
+                }
+              });
+              
+              var chart2 = new d3KitTimeline('#timeline2', {
+                direction: 'left',
+                initialWidth: 300,
+                initialHeight: 450,
+                layerGap: 60,
+                textFn: function(d){
+                  //return d.time.getFullYear() + '.' + d.time.getMonth() + ' - ' + d.name;
                   return d.time.getFullYear() + ' - ' + d.name;
                 }
               });
 
               chart.data(data).resizeToFit();
+              chart2.data(data2).resizeToFit();
         </script>
     </body>
 </html>
